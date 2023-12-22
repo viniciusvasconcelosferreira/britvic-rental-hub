@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\VehicleRequest;
 use App\Http\Resources\VehicleResource;
 use App\Models\Vehicle;
@@ -21,17 +22,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicles = Vehicle::all();
-
-        return VehicleResource::collection($vehicles);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return VehicleResource::collection(Vehicle::all());
     }
 
     /**
@@ -57,14 +48,6 @@ class VehicleController extends Controller
         }
 
         return new VehicleResource($vehicle);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**

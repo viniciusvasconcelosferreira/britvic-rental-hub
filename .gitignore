@@ -114,6 +114,7 @@ auth.json
 /.fleet
 /.idea
 /.vscode
+_ide_helper.php
 
 # Laravel 4 specific
 bootstrap/compiled.php
