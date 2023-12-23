@@ -1,8 +1,7 @@
-require('./bootstrap');
-import { createApp } from 'vue';
-import { createRouter, createWebHistory } from 'vue-router';
-
-// Import components
+import {createApp} from 'vue';
+import {createRouter, createWebHistory} from 'vue-router';
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap"
 import App from './components/App.vue';
 import {routes} from './router';
 

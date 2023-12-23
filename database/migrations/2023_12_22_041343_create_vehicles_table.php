@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('model');
             $table->string('brand');
             $table->year('year');
-            $table->string('number_plate');
+            $table->string('number_plate')->unique();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

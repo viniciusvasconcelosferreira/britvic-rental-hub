@@ -14,18 +14,6 @@ class VehicleResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $response = $this->message
-            ? ['message' => $this->message]
-            : [];
-
-        $response['data'] = [
-            'id' => $this->id,
-            'model' => $this->model,
-            'brand' => $this->brand,
-            'year' => $this->year,
-            'number_plate' => $this->number_plate
-        ];
-
-        return $response;
+        return parent::toArray($request);
     }
 }
