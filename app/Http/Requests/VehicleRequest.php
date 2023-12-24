@@ -11,7 +11,7 @@ class VehicleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class VehicleRequest extends FormRequest
         return [
             'model' => 'sometimes|required',
             'brand' => 'sometimes|required',
-            'year' => 'sometimes|required|date_format:Y|size:4',
+            'year' => 'sometimes|required|integer|date_format:Y|digits:4|min:2000',
             'number_plate' => 'sometimes|required',
         ];
     }

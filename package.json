@@ -23,6 +23,7 @@
         "vue-router": "^4.2.5"
     },
     "dependencies": {
+        "@brazilian-utils/brazilian-utils": "^1.0.0-rc.12",
         "@fortawesome/fontawesome-svg-core": "^6.5.1",
         "@fortawesome/free-solid-svg-icons": "^6.5.1",
         "@fortawesome/vue-fontawesome": "^3.0.5",

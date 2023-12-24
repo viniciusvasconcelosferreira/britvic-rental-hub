@@ -1,6 +1,11 @@
 <template>
     <div>
-        <h1>Lista de Veículos (Admin)</h1>
+        <div class="d-grid gap-2 d-md-flex justify-content-between">
+            <h1>Vehicle List (Admin)</h1>
+            <router-link class="btn btn-success" type="button" :to="{ name: 'admin-create-vehicle' }"
+                         style="padding: 0.75rem 0.375rem;">Create
+            </router-link>
+        </div>
         <div v-if="loading" class="text-center my-4">
             <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
@@ -30,7 +35,13 @@
                     <td v-if="vehicle.user">{{ vehicle.user.name }}</td>
                     <td v-else>--</td>
                     <td>{{ formatDate(vehicle.created_at) }}</td>
-                    <td>#</td>
+                    <td>
+                        <div class="d-grid gap-2 d-md-flex">
+                            <button @click="editVehicle(vehicle.id)" class="btn btn-primary" type="button">Edit</button>
+                            <button @click="deleteVehicle(vehicle.id)" class="btn btn-danger" type="button">Delete
+                            </button>
+                        </div>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -83,6 +94,9 @@ export default {
         this.fetchVehicleList();
     },
     methods: {
+        getToken() {
+            return localStorage.getItem('token');
+        },
         async fetchVehicleList(page = 1) {
             try {
                 this.loading = true;
@@ -96,6 +110,22 @@ export default {
         },
         formatDate(date) {
             return format(date, 'dd/MM/yyyy');
+        },
+        async editVehicle(vehicleId) {
+            this.$router.push(`/admin/vehicles/${vehicleId}/edit`);
+        },
+        async deleteVehicle(vehicleId) {
+            if (confirm('Are you sure you want to delete this vehicle?')) {
+                try {
+                    await axios.delete(`/admin/vehicle/${vehicleId}`, {
+                        headers: {Authorization: `Bearer ${this.getToken()}`}
+                    });
+                    this.vehicles.data = this.vehicles.data.filter(vehicle => vehicle.id !== vehicleId);
+                    console.log('Veículo excluído com sucesso!');
+                } catch (error) {
+                    console.error('Erro ao excluir veículo:', error);
+                }
+            }
         },
     },
 };

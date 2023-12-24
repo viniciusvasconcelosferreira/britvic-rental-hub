@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterAuthRequest extends FormRequest
@@ -23,9 +24,9 @@ class RegisterAuthRequest extends FormRequest
     {
         return [
             'name' => 'sometimes|required|string|max:255',
-            'email' => 'sometimes|required|string|email|max:255|unique:users,email',
+            'email' => 'sometimes|required|string|email|max:255|unique:users,email,' . $this->resolve('user')->id ?? null,
             'password' => 'sometimes|required|string|min:6',
-            'cpf' => 'sometimes|required|string|size:11|cpf|unique:users,cpf',
+            'cpf' => 'sometimes|required|string|size:11|cpf|unique:users,cpf,' . $this->resolve('user')->id ?? null,
             'groups' => ['string', 'regex:/^(employee,client|employee|client)$/']
         ];
     }
@@ -35,5 +36,14 @@ class RegisterAuthRequest extends FormRequest
         return [
             'groups.regex' => 'The groups field must be a valid string with the values "employee", "client" or "employee,client".',
         ];
+    }
+
+    public function resolve()
+    {
+        if ($this->route('user')) {
+            return User::find((int)$this->route('user'));
+        }
+
+        return new User();
     }
 }

@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('vehicle', VehicleController::class);
+Route::apiResource('vehicle', VehicleController::class)->only(['index']);
 
 Route::prefix('auth')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
@@ -33,4 +33,5 @@ Route::prefix('auth')->group(function () {
 
 Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     Route::apiResource('user', UserController::class);
+    Route::apiResource('vehicle', VehicleController::class)->except(['index']);
 });

@@ -34,7 +34,7 @@ class UserService
     public function updateUser(RegisterAuthRequest $request, User $user)
     {
         $request->validated();
-        
+
         $user->update($request->all());
 
         return $user;

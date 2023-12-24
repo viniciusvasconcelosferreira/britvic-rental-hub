@@ -20541,6 +20541,21 @@ var AdminRegister = function AdminRegister() {
 var VehicleListAdmin = function VehicleListAdmin() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_vehicles_admin_VehicleListAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/vehicles/admin/VehicleListAdmin.vue */ "./resources/js/components/vehicles/admin/VehicleListAdmin.vue"));
 };
+var VehicleCreateAdmin = function VehicleCreateAdmin() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_vehicles_admin_VehicleCreateAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/vehicles/admin/VehicleCreateAdmin.vue */ "./resources/js/components/vehicles/admin/VehicleCreateAdmin.vue"));
+};
+var VehicleEditAdmin = function VehicleEditAdmin() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_vehicles_admin_VehicleEditAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/vehicles/admin/VehicleEditAdmin.vue */ "./resources/js/components/vehicles/admin/VehicleEditAdmin.vue"));
+};
+var UserListAdmin = function UserListAdmin() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_users_admin_UserListAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/users/admin/UserListAdmin.vue */ "./resources/js/components/users/admin/UserListAdmin.vue"));
+};
+var UserCreateAdmin = function UserCreateAdmin() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_users_admin_UserCreateAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/users/admin/UserCreateAdmin.vue */ "./resources/js/components/users/admin/UserCreateAdmin.vue"));
+};
+var UserEditAdmin = function UserEditAdmin() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_users_admin_UserEditAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/users/admin/UserEditAdmin.vue */ "./resources/js/components/users/admin/UserEditAdmin.vue"));
+};
 var routes = [{
   name: 'home',
   path: '/',
@@ -20565,6 +20580,28 @@ var routes = [{
   name: 'admin-vehicles',
   path: '/admin/vehicles',
   component: VehicleListAdmin
+}, {
+  name: 'admin-create-vehicle',
+  path: '/admin/vehicles/create',
+  component: VehicleCreateAdmin
+}, {
+  name: 'admin-edit-vehicle',
+  path: '/admin/vehicles/:id/edit',
+  component: VehicleEditAdmin,
+  props: true
+}, {
+  name: 'admin-users',
+  path: '/admin/users',
+  component: UserListAdmin
+}, {
+  name: 'admin-create-user',
+  path: '/admin/users/create',
+  component: UserCreateAdmin
+}, {
+  name: 'admin-edit-user',
+  path: '/admin/users/:id/edit',
+  component: UserEditAdmin,
+  props: true
 }];
 
 /***/ }),
@@ -35864,7 +35901,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_vehicles_customer_VehicleListCustomer_vue":1,"resources_js_components_authentication_customer_Login_vue":1,"resources_js_components_authentication_customer_Register_vue":1,"resources_js_components_authentication_admin_Login_vue":1,"resources_js_components_authentication_admin_Register_vue":1,"resources_js_components_vehicles_admin_VehicleListAdmin_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_vehicles_customer_VehicleListCustomer_vue":1,"resources_js_components_authentication_customer_Login_vue":1,"resources_js_components_authentication_customer_Register_vue":1,"resources_js_components_authentication_admin_Login_vue":1,"resources_js_components_authentication_admin_Register_vue":1,"resources_js_components_vehicles_admin_VehicleListAdmin_vue":1,"resources_js_components_vehicles_admin_VehicleCreateAdmin_vue":1,"resources_js_components_vehicles_admin_VehicleEditAdmin_vue":1,"resources_js_components_users_admin_UserListAdmin_vue":1,"resources_js_components_users_admin_UserCreateAdmin_vue":1,"resources_js_components_users_admin_UserEditAdmin_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
