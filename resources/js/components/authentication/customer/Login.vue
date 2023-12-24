@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import axios from '../../utils/axios';
+import axios from '../../../utils/axios';
 
 export default {
     data() {
@@ -49,9 +49,10 @@ export default {
                 const token = response.data.authorization.token;
                 localStorage.setItem('token', token);
 
-                this.$router.push('/').then(() => {
-                    window.location.reload();
-                });
+                // Emitir o evento de login
+                this.emitter.emit('loginSuccess');
+
+                this.$router.push('/');
             } catch (error) {
                 console.error('Erro no login:', error);
             }

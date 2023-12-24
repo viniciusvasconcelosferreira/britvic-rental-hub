@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\VehicleController;
+use App\Http\Controllers\API\Authentication\AuthController;
+use App\Http\Controllers\API\Users\UserController;
+use App\Http\Controllers\API\Vehicles\VehicleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,8 @@ Route::prefix('auth')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
     });
+});
+
+Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
+    Route::apiResource('user', UserController::class);
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Vehicles;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VehicleRequest;
@@ -22,7 +22,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicles = Vehicle::paginate(8);
+        $vehicles = Vehicle::with('user')->paginate(8);
         return VehicleResource::collection($vehicles);
     }
 
@@ -33,8 +33,9 @@ class VehicleController extends Controller
     {
         $vehicle = $this->vehicleService->createVehicle($request);
         $vehicleResource = new VehicleResource($vehicle);
-        $vehicleResource->message = 'Vehicle created successfully';
-        return $vehicleResource;
+        return $vehicleResource->additional([
+            'message' => 'Vehicle created successfully'
+        ]);
     }
 
     /**
@@ -65,9 +66,10 @@ class VehicleController extends Controller
         $vehicle = $this->vehicleService->updateVehicle($request, $vehicle);
 
         $vehicleResource = new VehicleResource($vehicle);
-        $vehicleResource->message = 'Vehicle updated successfully';
 
-        return $vehicleResource;
+        return $vehicleResource->additional([
+            'message' => 'Vehicle updated successfully'
+        ]);
     }
 
     /**
@@ -75,17 +77,18 @@ class VehicleController extends Controller
      */
     public function destroy(string $id)
     {
-        $vehicle = $this->vehicleService->findVehicle($id);
+        $vehicleExist = $this->vehicleService->findVehicle($id);
 
-        if (!$vehicle) {
+        if (!$vehicleExist) {
             return response()->json(['message' => 'Vehicle not found'], 404);
         }
 
-        $invoice = $this->vehicleService->deleteVehicle($vehicle);
+        $vehicle = $this->vehicleService->deleteVehicle($vehicleExist);
 
-        $vehicleResource = new VehicleResource($invoice);
-        $vehicleResource->message = 'Vehicle deleted successfully';
+        $vehicleResource = new VehicleResource($vehicle);
 
-        return $vehicleResource;
+        return $vehicleResource->additional([
+            'message' => 'Vehicle deleted successfully'
+        ]);
     }
 }

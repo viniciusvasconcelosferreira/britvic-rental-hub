@@ -1,21 +1,40 @@
-const VehicleList = () => import('../components/vehicles/VehicleList.vue');
-const Login = () => import('../components/authentication/Login.vue');
-const Register = () => import('../components/authentication/Register.vue');
+const VehicleListCustomer = () => import('../components/vehicles/customer/VehicleListCustomer.vue');
+const CustomerLogin = () => import('../components/authentication/customer/Login.vue');
+const CustomerRegister = () => import('../components/authentication/customer/Register.vue');
+
+const AdminLogin = () => import('../components/authentication/admin/Login.vue');
+const AdminRegister = () => import('../components/authentication/admin/Register.vue');
+const VehicleListAdmin = () => import('../components/vehicles/admin/VehicleListAdmin.vue');
 
 export const routes = [
     {
         name: 'home',
         path: '/',
-        component: VehicleList
+        component: VehicleListCustomer
     },
     {
-        name: 'login',
+        name: 'customer-login',
         path: '/login',
-        component: Login
+        component: CustomerLogin
     },
     {
-        name: 'register',
+        name: 'customer-register',
         path: '/register',
-        component: Register
+        component: CustomerRegister
+    },
+    {
+        name: 'admin-login',
+        path: '/admin/login',
+        component: AdminLogin
+    },
+    {
+        name: 'admin-register',
+        path: '/admin/register',
+        component: AdminRegister
+    },
+    {
+        name: 'admin-vehicles',
+        path: '/admin/vehicles',
+        component: VehicleListAdmin
     }
-]
+];

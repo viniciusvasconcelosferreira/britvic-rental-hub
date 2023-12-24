@@ -1,24 +1,10 @@
 <template>
     <main>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse">
-                    <div class="navbar-nav">
-                        <router-link exact-active-class="active" to="/" class="nav-item nav-link">Home</router-link>
-                    </div>
-                </div>
-                <div class="text-end">
-                    <template v-if="!authenticated">
-                        <router-link exact-active-class="active" to="/login" class="btn btn-outline-light me-2">Login
-                        </router-link>
-                    </template>
-                    <template v-else>
-                        <span class="text-light me-2">{{ userName }}</span>
-                        <button @click="logout" class="btn btn-outline-light">Logout</button>
-                    </template>
-                </div>
-            </div>
-        </nav>
+        <navbar
+            :authenticated="authenticated"
+            :userName="userName"
+            :userType="userType"
+        ></navbar>
         <div class="container mt-5">
             <router-view></router-view>
         </div>
@@ -27,16 +13,23 @@
 
 <script>
 import axios from '../utils/axios';
+import Navbar from "./layout/Navbar.vue";
 
 export default {
+    components: {
+        Navbar,
+    },
     data() {
         return {
             authenticated: false,
             userName: '',
+            userType: 'client'
         };
     },
     created() {
         this.checkAuthentication();
+        // Ouvir o evento de login
+        this.emitter.on('loginSuccess', this.fetchUserData);
     },
     methods: {
         checkAuthentication() {
@@ -51,11 +44,17 @@ export default {
             }
         },
         async fetchUserData() {
-            try {
-                const response = await axios.get('/user');
-                this.userName = response.data.name;
-            } catch (error) {
-                console.error('Erro ao buscar informações do usuário:', error);
+            if (this.authenticated) {
+                const token = localStorage.getItem('token');
+                try {
+                    const response = await axios.get('/user', {
+                        headers: {Authorization: `Bearer ${token}`}
+                    });
+                    this.userName = response.data.name;
+                    this.userType = response.data.groups;
+                } catch (error) {
+                    console.error('Erro ao buscar informações do usuário:', error);
+                }
             }
         },
         logout() {

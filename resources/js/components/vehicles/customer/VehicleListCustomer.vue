@@ -58,13 +58,13 @@
 </template>
 
 <script>
-import axios from '../../utils/axios';
+import axios from '../../../utils/axios';
 
 export default {
     data() {
         return {
             vehicles: [],
-            loading: false, // Adicionado indicador de carregamento
+            loading: false,
         };
     },
     mounted() {

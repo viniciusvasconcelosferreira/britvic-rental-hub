@@ -22,10 +22,18 @@ class RegisterAuthRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'cpf' => 'required|string|size:11|cpf|unique:users,cpf'
+            'name' => 'sometimes|required|string|max:255',
+            'email' => 'sometimes|required|string|email|max:255|unique:users,email',
+            'password' => 'sometimes|required|string|min:6',
+            'cpf' => 'sometimes|required|string|size:11|cpf|unique:users,cpf',
+            'groups' => ['string', 'regex:/^(employee,client|employee|client)$/']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'groups.regex' => 'The groups field must be a valid string with the values "employee", "client" or "employee,client".',
         ];
     }
 }

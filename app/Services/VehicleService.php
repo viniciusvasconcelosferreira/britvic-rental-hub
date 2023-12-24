@@ -10,6 +10,8 @@ class VehicleService
 {
     public function createVehicle(VehicleRequest $request)
     {
+        $request->validated();
+
         return Vehicle::create([
             'model' => $request->input('model'),
             'brand' => $request->input('brand'),
@@ -30,6 +32,8 @@ class VehicleService
 
     public function updateVehicle(VehicleRequest $request, Vehicle $vehicle)
     {
+        $request->validated();
+
         $vehicle->update($request->all());
 
         return $vehicle;
