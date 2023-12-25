@@ -1,0 +1,4 @@
+# Exemplo de Crontab para o Laravel
+
+# Executar o Job duas vezes por dia
+0 1,13 * * * cd /var/www/html/seu-projeto && php artisan schedule:run >> /dev/null 2>&1
