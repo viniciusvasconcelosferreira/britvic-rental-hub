@@ -129,7 +129,6 @@ export default {
             return localStorage.getItem('token');
         },
         isContained(vehiclesData, cars) {
-            // console.log("Object.values(vehiclesData) == cars", Object.values(vehiclesData) == cars);
             return Object.values(vehiclesData) == cars;
         },
         async fetchReservationData(reservationId) {
@@ -164,11 +163,6 @@ export default {
                 const response = await axios.get(`/admin/users/all`, {
                     headers: {Authorization: `Bearer ${this.getToken()}`}
                 });
-                // this.cars = response.data.data.reduce((acc, item) => {
-                //     acc[item.id] = `${item.brand} - ${item.model} - ${item.number_plate}`;
-                //     return acc;
-                // }, {});
-                // this.vehicleData = transformData(this.formData.vehicle);
                 this.users = response.data.data;
             } catch (error) {
                 console.error('Erro ao buscar usuários cadastrados:', error);

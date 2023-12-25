@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\API\Reservations;
 
+
+use App\Events\VehicleReserved;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReservationRequest;
 use App\Http\Requests\UpdateReservationStatusRequest;
 use App\Http\Resources\ReservationResource;
 use App\Models\Reservation;
+use App\Models\User;
+use App\Models\Vehicle;
 use App\Services\ReservationService;
-use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
@@ -31,7 +34,7 @@ class ReservationController extends Controller
 
     public function indexAll()
     {
-        $reservations = Reservation::with('user')->with('vehicle')->orderBy('id','asc')->paginate(8);
+        $reservations = Reservation::with('user')->with('vehicle')->orderBy('id', 'asc')->paginate(8);
         return ReservationResource::collection($reservations);
     }
 
@@ -41,6 +44,7 @@ class ReservationController extends Controller
     public function store(ReservationRequest $request)
     {
         $reservation = $this->reservationService->createReservation($request);
+        event(new VehicleReserved(User::find($reservation->user_id), Vehicle::find($reservation->vehicle_id)));
         $reservationResource = new ReservationResource($reservation);
         return $reservationResource->additional([
             'message' => 'Reservation created successfully'
