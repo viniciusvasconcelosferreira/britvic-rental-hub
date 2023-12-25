@@ -1,5 +1,15 @@
 <template>
     <div class="container mt-5">
+        <div v-if="Object.keys(errors).length > 0">
+            <ul>
+                <li v-for="(errorMessages, field) in errors" :key="field">
+                    <strong>{{ field }}</strong>
+                    <ul>
+                        <li v-for="message in errorMessages" :key="message">{{ message }}</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
@@ -46,6 +56,7 @@ export default {
             email: '',
             password: '',
             cpf: '',
+            errors: {},
         }
     },
     methods: {
@@ -58,7 +69,7 @@ export default {
                     cpf: this.cpf
                 });
 
-                if (response.data.user) {
+                if (response.data) {
                     const loginResponse = await axios.post('/auth/login', {
                         email: this.email,
                         password: this.password,
@@ -66,12 +77,15 @@ export default {
 
                     const token = loginResponse.data.authorization.token;
                     localStorage.setItem('token', token);
-
+                    this.errors = {};
                     this.$router.push('/').then(() => {
                         window.location.reload();
                     });
                 }
             } catch (error) {
+                if (error.response && error.response.data && error.response.data.errors) {
+                    this.errors = error.response.data.errors;
+                }
                 console.error('Error registering user:', error);
             }
         }

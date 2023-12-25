@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\Authentication\AuthController;
+use App\Http\Controllers\API\Reservations\ReservationController;
 use App\Http\Controllers\API\Users\UserController;
 use App\Http\Controllers\API\Vehicles\VehicleController;
 use Illuminate\Http\Request;
@@ -32,6 +33,11 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
-    Route::apiResource('user', UserController::class);
-    Route::apiResource('vehicle', VehicleController::class)->except(['index']);
+    Route::apiResource('user', UserController::class)->middleware('can:access-admin-reservation');
+    Route::apiResource('vehicle', VehicleController::class)->except(['index'])->middleware('can:access-admin-reservation');
+    Route::get('/reservation', [ReservationController::class, 'indexAll'])->name('reservation.all')->middleware('can:access-admin-reservation');
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('reservation', ReservationController::class);
 });

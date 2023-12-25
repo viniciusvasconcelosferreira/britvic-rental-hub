@@ -36,17 +36,16 @@
         </div>
 
         <div class="mb-3">
-            <label for="groups" class="form-label">Groups</label>
+            <label for="type" class="form-label">Type</label>
             <select
                 class="form-select"
-                aria-label="Groups"
-                id="groups"
-                v-model="formData.groups"
-                multiple
+                aria-label="Type"
+                id="type"
+                v-model="formData.type"
             >
-                <option v-for="(group, value) in groupOptions" :key="value" :value="value"
-                        :selected="formData.groups.includes(value)">
-                    {{ group }}
+                <option v-for="(type, value) in typeOptions" :key="value" :value="value"
+                        :selected="formData.type.includes(value)">
+                    {{ type }}
                 </option>
             </select>
         </div>
@@ -57,8 +56,14 @@
 
 <script>
 import axios from '../../../../utils/axios';
+import UserType from "../../../../enums/UserType";
 
 export default {
+    computed: {
+        UserType() {
+            return UserType
+        }
+    },
     props: {
         isEditMode: Boolean,
     },
@@ -69,11 +74,11 @@ export default {
                 email: '',
                 password: '',
                 cpf: '',
-                groups: [],
+                type: '',
             },
             loading: false,
             errors: {},
-            groupOptions: {
+            typeOptions: {
                 employee: 'Employee',
                 client: 'Client',
             },
@@ -84,6 +89,9 @@ export default {
             const userId = this.$route.params.id;
             this.fetchUserData(userId);
         }
+    },
+    updated() {
+
     },
     methods: {
         getToken() {
@@ -107,7 +115,7 @@ export default {
                 const apiEndpoint = this.isEditMode
                     ? `/admin/user/${this.$route.params.id}`
                     : '/admin/user';
-                this.formData.groups = this.formData.groups.join(',');
+                this.formData.type = this.formData.type.toUpperCase();
                 const response = await axios[this.isEditMode ? 'put' : 'post'](apiEndpoint, this.formData, {
                     headers: {Authorization: `Bearer ${this.getToken()}`},
                 });

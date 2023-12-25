@@ -51,7 +51,7 @@ export default {
                         headers: {Authorization: `Bearer ${token}`}
                     });
                     this.userName = response.data.name;
-                    this.userType = response.data.groups;
+                    this.userType = response.data.type;
                 } catch (error) {
                     console.error('Erro ao buscar informações do usuário:', error);
                 }

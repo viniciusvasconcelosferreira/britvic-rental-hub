@@ -19,7 +19,7 @@
                     <th scope="col">CPF</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Groups</th>
+                    <th scope="col">Type</th>
                     <th scope="col">Created at</th>
                     <th scope="col">Actions</th>
                 </tr>
@@ -30,7 +30,7 @@
                     <td>{{ formatCpf(user.cpf) }}</td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
-                    <td>{{ user.groups }}</td>
+                    <td>{{ user.type }}</td>
                     <td>{{ formatDate(user.created_at) }}</td>
                     <td>
                         <div class="d-grid gap-2 d-md-flex">

@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\UserType;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RegisterAuthRequest extends FormRequest
 {
@@ -27,14 +29,14 @@ class RegisterAuthRequest extends FormRequest
             'email' => 'sometimes|required|string|email|max:255|unique:users,email,' . $this->resolve('user')->id ?? null,
             'password' => 'sometimes|required|string|min:6',
             'cpf' => 'sometimes|required|string|size:11|cpf|unique:users,cpf,' . $this->resolve('user')->id ?? null,
-            'groups' => ['string', 'regex:/^(employee,client|employee|client)$/']
+            'type' => Rule::in(UserType::toValues()),
         ];
     }
 
     public function messages()
     {
         return [
-            'groups.regex' => 'The groups field must be a valid string with the values "employee", "client" or "employee,client".',
+            'type.in' => 'The type field must be one of the allowed values: ' . implode(', ', UserType::toValues()),
         ];
     }
 

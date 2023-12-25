@@ -13,8 +13,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(5)->create(['groups' => 'client']);
-        User::factory(5)->create(['groups' => 'employee']);
-        User::factory(5)->create(['groups' => 'client,employee']);
+        User::factory(5)->create(['type' => 'client']);
+        User::factory(5)->create(['type' => 'employee']);
     }
 }

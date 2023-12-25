@@ -22,7 +22,7 @@
         </div>
         <div class="text-center mt-3">
             <p>Don't have an account?
-                <router-link to="/register">Register here</router-link>
+                <router-link to="/admin/register">Register here</router-link>
             </p>
         </div>
     </div>

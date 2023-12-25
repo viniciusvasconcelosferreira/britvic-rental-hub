@@ -20292,7 +20292,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 5:
               response = _context.sent;
               _this.userName = response.data.name;
-              _this.userType = response.data.groups;
+              _this.userType = response.data.type;
               _context.next = 13;
               break;
             case 10:

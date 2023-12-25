@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\UserType;
 use App\Http\Requests\RegisterAuthRequest;
 use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -18,7 +19,7 @@ class UserService
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'cpf' => $request->cpf,
-            'groups' => $request->groups ?? 'client',
+            'type' => $request->type ?? UserType::CLIENT(),
         ]);
     }
 
