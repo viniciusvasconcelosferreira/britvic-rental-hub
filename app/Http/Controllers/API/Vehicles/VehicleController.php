@@ -26,6 +26,12 @@ class VehicleController extends Controller
         return VehicleResource::collection($vehicles);
     }
 
+    public function indexAll()
+    {
+        $vehicles = Vehicle::all(['id', 'model', 'brand', 'number_plate']);
+        return VehicleResource::collection($vehicles);
+    }
+
     /**
      * Store a newly created resource in storage.
      */

@@ -10,6 +10,9 @@ const VehicleEditAdmin = () => import('../components/vehicles/admin/VehicleEditA
 const UserListAdmin = () => import('../components/users/admin/UserListAdmin.vue');
 const UserCreateAdmin = () => import('../components/users/admin/UserCreateAdmin.vue');
 const UserEditAdmin = () => import('../components/users/admin/UserEditAdmin.vue');
+const ReservationListAdmin = () => import('../components/reservations/admin/ReservationListAdmin.vue');
+const ReservationCreateAdmin = () => import('../components/reservations/admin/ReservationCreateAdmin.vue');
+const ReservationEditAdmin = () => import('../components/reservations/admin/ReservationEditAdmin.vue');
 export const routes = [
     {
         name: 'home',
@@ -66,6 +69,22 @@ export const routes = [
         name: 'admin-edit-user',
         path: '/admin/users/:id/edit',
         component: UserEditAdmin,
+        props: true
+    },
+    {
+        name: 'admin-reservations',
+        path: '/admin/reservations',
+        component: ReservationListAdmin
+    },
+    {
+        name: 'admin-create-reservation',
+        path: '/admin/reservations/create',
+        component: ReservationCreateAdmin,
+    },
+    {
+        name: 'admin-edit-reservation',
+        path: '/admin/reservations/:id/edit',
+        component: ReservationEditAdmin,
         props: true
     },
 ];

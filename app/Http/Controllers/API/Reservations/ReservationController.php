@@ -31,7 +31,7 @@ class ReservationController extends Controller
 
     public function indexAll()
     {
-        $reservations = Reservation::with('user')->with('vehicle')->paginate(8);
+        $reservations = Reservation::with('user')->with('vehicle')->orderBy('id','asc')->paginate(8);
         return ReservationResource::collection($reservations);
     }
 
@@ -78,6 +78,23 @@ class ReservationController extends Controller
     public function update(ReservationRequest $request, int $id)
     {
         $reservation = $this->reservationService->findReservation($id);
+
+        if (!$reservation) {
+            return response()->json(['message' => 'Reservation not found'], 404);
+        }
+
+        $reservation = $this->reservationService->updateReservation($request, $reservation);
+
+        $reservationResource = new ReservationResource($reservation);
+
+        return $reservationResource->additional([
+            'message' => 'Reservation updated successfully'
+        ]);
+    }
+
+    public function updateAll(ReservationRequest $request, int $id)
+    {
+        $reservation = $this->reservationService->findReservationAdmin($id);
 
         if (!$reservation) {
             return response()->json(['message' => 'Reservation not found'], 404);

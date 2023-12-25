@@ -20556,6 +20556,15 @@ var UserCreateAdmin = function UserCreateAdmin() {
 var UserEditAdmin = function UserEditAdmin() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_users_admin_UserEditAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/users/admin/UserEditAdmin.vue */ "./resources/js/components/users/admin/UserEditAdmin.vue"));
 };
+var ReservationListAdmin = function ReservationListAdmin() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_reservations_admin_ReservationListAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/reservations/admin/ReservationListAdmin.vue */ "./resources/js/components/reservations/admin/ReservationListAdmin.vue"));
+};
+var ReservationCreateAdmin = function ReservationCreateAdmin() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_reservations_admin_ReservationCreateAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/reservations/admin/ReservationCreateAdmin.vue */ "./resources/js/components/reservations/admin/ReservationCreateAdmin.vue"));
+};
+var ReservationEditAdmin = function ReservationEditAdmin() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_reservations_admin_ReservationEditAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/reservations/admin/ReservationEditAdmin.vue */ "./resources/js/components/reservations/admin/ReservationEditAdmin.vue"));
+};
 var routes = [{
   name: 'home',
   path: '/',
@@ -20601,6 +20610,19 @@ var routes = [{
   name: 'admin-edit-user',
   path: '/admin/users/:id/edit',
   component: UserEditAdmin,
+  props: true
+}, {
+  name: 'admin-reservations',
+  path: '/admin/reservations',
+  component: ReservationListAdmin
+}, {
+  name: 'admin-create-reservation',
+  path: '/admin/reservations/create',
+  component: ReservationCreateAdmin
+}, {
+  name: 'admin-edit-reservation',
+  path: '/admin/reservations/:id/edit',
+  component: ReservationEditAdmin,
   props: true
 }];
 
@@ -35901,7 +35923,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_vehicles_customer_VehicleListCustomer_vue":1,"resources_js_components_authentication_customer_Login_vue":1,"resources_js_components_authentication_customer_Register_vue":1,"resources_js_components_authentication_admin_Login_vue":1,"resources_js_components_authentication_admin_Register_vue":1,"resources_js_components_vehicles_admin_VehicleListAdmin_vue":1,"resources_js_components_vehicles_admin_VehicleCreateAdmin_vue":1,"resources_js_components_vehicles_admin_VehicleEditAdmin_vue":1,"resources_js_components_users_admin_UserListAdmin_vue":1,"resources_js_components_users_admin_UserCreateAdmin_vue":1,"resources_js_components_users_admin_UserEditAdmin_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_vehicles_customer_VehicleListCustomer_vue":1,"resources_js_components_authentication_customer_Login_vue":1,"resources_js_components_authentication_customer_Register_vue":1,"resources_js_components_authentication_admin_Login_vue":1,"resources_js_components_authentication_admin_Register_vue":1,"resources_js_components_vehicles_admin_VehicleListAdmin_vue":1,"resources_js_components_vehicles_admin_VehicleCreateAdmin_vue":1,"resources_js_components_vehicles_admin_VehicleEditAdmin_vue":1,"resources_js_components_users_admin_UserListAdmin_vue":1,"resources_js_components_users_admin_UserCreateAdmin_vue":1,"resources_js_components_users_admin_UserEditAdmin_vue":1,"resources_js_components_reservations_admin_ReservationListAdmin_vue":1,"resources_js_components_reservations_admin_ReservationCreateAdmin_vue":1,"resources_js_components_reservations_admin_ReservationEditAdmin_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

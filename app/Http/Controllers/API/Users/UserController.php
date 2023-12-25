@@ -27,6 +27,12 @@ class UserController extends Controller
         return UserResource::collection($user);
     }
 
+    public function indexAll()
+    {
+        $user = User::select('id', 'cpf', 'name', 'email')->where('type', 'client')->get();
+        return UserResource::collection($user);
+    }
+
     /**
      * Store a newly created resource in storage.
      */

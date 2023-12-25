@@ -38,6 +38,9 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     Route::get('/reservation', [ReservationController::class, 'indexAll'])->name('reservation.index_all')->middleware('can:access-admin-reservation');
     Route::get('/reservation/{reservation}', [ReservationController::class, 'showAll'])->name('reservation.show_all')->middleware('can:access-admin-reservation');
     Route::patch('/reservations/{reservation}/update-status', [ReservationController::class, 'updateStatus'])->name('reservation.update_status')->middleware('can:access-admin-reservation');
+    Route::get('/vehicles/all', [VehicleController::class, 'indexAll'])->name('vehicle.index_all');
+    Route::put('/reservation/{reservation}', [ReservationController::class, 'updateAll'])->name('reservation.update_all')->middleware('can:access-admin-reservation');
+    Route::get('/users/all', [UserController::class, 'indexAll'])->name('user.index_all')->middleware('can:access-admin-reservation');
 });
 
 Route::middleware('auth:sanctum')->group(function () {

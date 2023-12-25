@@ -90,9 +90,6 @@ export default {
             this.fetchUserData(userId);
         }
     },
-    updated() {
-
-    },
     methods: {
         getToken() {
             return localStorage.getItem('token');

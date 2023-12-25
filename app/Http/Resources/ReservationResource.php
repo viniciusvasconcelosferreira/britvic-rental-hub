@@ -20,7 +20,8 @@ class ReservationResource extends JsonResource
             'status' => $this->status,
             'additional_information' => $this->additional_information,
             'user' => new UserResource($this->whenLoaded('user')),
-            'vehicle' => new VehicleResource($this->whenLoaded('vehicle'))
+            'vehicle' => new VehicleResource($this->whenLoaded('vehicle')),
+            'created_at'=>$this->created_at
         ];
     }
 
