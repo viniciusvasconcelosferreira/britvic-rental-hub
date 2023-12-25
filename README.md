@@ -118,6 +118,19 @@ e demonstrar proficiência técnica em tecnologias como Laravel, Bootstrap e Vue
 
 11. Acesse o sistema pelo navegador: [http://localhost:8000](http://localhost:8000)
 
+## Observações durante os Testes
+
+Durante os testes do Britvic Rental Hub, foram observados alguns comportamentos notáveis relacionados ao login e logout. É importante estar ciente dessas nuances para uma experiência de usuário mais fluida.
+
+### Login e Logout
+
+1. **Atualização da Página após Login ou Logout:**
+   Para visualizar as alterações de início ou término da sessão, é recomendável atualizar a página manualmente. Isso garante que as alterações na sessão do usuário sejam refletidas corretamente na interface.
+
+   *Nota: Este comportamento pode variar dependendo das configurações específicas do seu ambiente e do sistema de gerenciamento de estado utilizado.*
+
+
+
 ## Licença
 
 Este projeto é licenciado sob a [Licença MIT](LICENSE).
