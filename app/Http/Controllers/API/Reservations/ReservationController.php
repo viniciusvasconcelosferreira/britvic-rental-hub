@@ -88,7 +88,7 @@ class ReservationController extends Controller
         $reservationResource = new ReservationResource($reservation);
 
         return $reservationResource->additional([
-            'message' => 'Reservation created successfully'
+            'message' => 'Reservation updated successfully'
         ]);
     }
 

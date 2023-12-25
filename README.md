@@ -1,5 +1,17 @@
 # Britvic Rental Hub
 
+## Documentação das Rotas
+
+A documentação detalhada das rotas da API está disponível no diretório `docs`. Esta documentação foi criada usando o Insomnia e inclui exemplos de requisições, respostas e autenticação.
+
+Para acessar a documentação:
+
+1. [Baixe e instale o Insomnia](https://insomnia.rest/download) se ainda não tiver instalado.
+2. Abra o Insomnia.
+3. Importe a documentação do diretório `docs` no seu projeto.
+
+A documentação fornece informações sobre todas as rotas disponíveis, parâmetros necessários, autenticação requerida e exemplos práticos de como usar cada rota.
+
 ## Descrição
 
 O Britvic Rental Hub é um sistema desenvolvido para proporcionar uma gestão eficiente de uma locadora de veículos.
