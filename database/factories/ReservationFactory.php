@@ -18,8 +18,15 @@ class ReservationFactory extends Factory
      */
     public function definition(): array
     {
-        $status = $this->faker->randomElement(['pending', 'confirmed', 'in_progress', 'completed', 'cancelled']);
-        $date = $status == 'cancelled' ? $this->faker->dateTimeBetween('-1 month', 'now') : $this->faker->dateTimeBetween('now', '+30 days');
+        $statusOptions = ['pending', 'confirmed', 'in_progress', 'completed', 'cancelled'];
+        $status = $this->faker->randomElement($statusOptions);
+
+        $date = $this->faker->dateTimeBetween(
+            $status === 'cancelled' || $status === 'completed' ? '-1 month' : 'now',
+            $status === 'cancelled' || $status === 'completed' ? 'now' : '+30 days'
+        );
+
+        $deletedAt = $status === 'cancelled' || $status === 'completed' ? now() : null;
 
         return [
             'user_id' => User::factory(),
@@ -27,7 +34,7 @@ class ReservationFactory extends Factory
             'date' => $date,
             'status' => $status,
             'additional_information' => $this->faker->text(191),
-            'deleted_at' => $status == 'cancelled' ? now() : null,
+            'deleted_at' => $deletedAt,
         ];
     }
 }
