@@ -17,6 +17,11 @@
                             Reservation
                         </router-link>
                     </template>
+                    <template v-if="authenticated && userType === 'client'">
+                        <router-link exact-active-class="active" to="/reservations" class="nav-item nav-link">
+                            My Reservations
+                        </router-link>
+                    </template>
                 </div>
             </div>
             <div class="text-end">

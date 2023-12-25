@@ -14,7 +14,15 @@
                             <h5 class="card-title">{{ vehicle.brand }} - {{ vehicle.model }}</h5>
                             <p class="card-text">Ano: {{ vehicle.year }}</p>
                             <p class="card-text">Placa: {{ vehicle.number_plate }}</p>
-                            <a href="#" class="btn btn-primary">Reserve</a>
+                            <router-link v-if="isAuthenticated" class="btn btn-primary"
+                                         :to="'/reservations/' + vehicle.id + '/create'">
+                                Reserve
+                            </router-link>
+                            <div v-else>
+                                Faça
+                                <router-link to="/login">login</router-link>
+                                para reservar um veículo.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -65,12 +73,17 @@ export default {
         return {
             vehicles: [],
             loading: false,
+            isAuthenticated: this.isAuthenticated(),
         };
     },
     mounted() {
         this.fetchVehicles();
     },
     methods: {
+        isAuthenticated() {
+            const token = localStorage.getItem('token');
+            return token !== null && token !== '';
+        },
         async fetchVehicles(page = 1) {
             try {
                 this.loading = true;

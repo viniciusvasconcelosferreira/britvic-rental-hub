@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('vehicle', VehicleController::class)->only(['index']);
+Route::apiResource('vehicle', VehicleController::class)->only(['index', 'show']);
 
 Route::prefix('auth')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
@@ -34,7 +34,7 @@ Route::prefix('auth')->group(function () {
 
 Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     Route::apiResource('user', UserController::class)->middleware('can:access-admin-reservation');
-    Route::apiResource('vehicle', VehicleController::class)->except(['index'])->middleware('can:access-admin-reservation');
+    Route::apiResource('vehicle', VehicleController::class)->except(['index', 'show'])->middleware('can:access-admin-reservation');
     Route::get('/reservation', [ReservationController::class, 'indexAll'])->name('reservation.index_all')->middleware('can:access-admin-reservation');
     Route::get('/reservation/{reservation}', [ReservationController::class, 'showAll'])->name('reservation.show_all')->middleware('can:access-admin-reservation');
     Route::patch('/reservations/{reservation}/update-status', [ReservationController::class, 'updateStatus'])->name('reservation.update_status')->middleware('can:access-admin-reservation');
@@ -45,4 +45,5 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('reservation', ReservationController::class);
+    Route::get('/reservation/{vehicle}/{month}/{year}', [ReservationController::class, 'showAvailability'])->name('reservation.show_availability');
 });

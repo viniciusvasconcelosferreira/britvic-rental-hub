@@ -76,6 +76,13 @@ class ReservationController extends Controller
         return new ReservationResource($reservation);
     }
 
+    public function showAvailability(int $vehicle, int $month, int $year)
+    {
+        $reservation = $this->reservationService->findAvailability($vehicle, $month, $year);
+
+        return $reservation;
+    }
+
     /**
      * Update the specified resource in storage.
      */

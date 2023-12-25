@@ -7,6 +7,7 @@ use App\Http\Requests\ReservationRequest;
 use App\Models\Reservation;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ReservationService
 {
@@ -40,6 +41,16 @@ class ReservationService
         } catch (ModelNotFoundException $e) {
             return null;
         }
+    }
+
+    public function findAvailability($vehicle, $month, $year)
+    {
+        return DB::table('reservations')
+            ->select('id', 'date', 'status')
+            ->where('vehicle_id', $vehicle)
+            ->whereMonth('date', $month)
+            ->whereYear('date', $year)
+            ->get();
     }
 
     public function updateReservation(ReservationRequest $request, $reservation)

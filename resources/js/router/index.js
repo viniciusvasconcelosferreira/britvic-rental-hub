@@ -1,7 +1,6 @@
 const VehicleListCustomer = () => import('../components/vehicles/customer/VehicleListCustomer.vue');
 const CustomerLogin = () => import('../components/authentication/customer/Login.vue');
 const CustomerRegister = () => import('../components/authentication/customer/Register.vue');
-
 const AdminLogin = () => import('../components/authentication/admin/Login.vue');
 const AdminRegister = () => import('../components/authentication/admin/Register.vue');
 const VehicleListAdmin = () => import('../components/vehicles/admin/VehicleListAdmin.vue');
@@ -13,6 +12,9 @@ const UserEditAdmin = () => import('../components/users/admin/UserEditAdmin.vue'
 const ReservationListAdmin = () => import('../components/reservations/admin/ReservationListAdmin.vue');
 const ReservationCreateAdmin = () => import('../components/reservations/admin/ReservationCreateAdmin.vue');
 const ReservationEditAdmin = () => import('../components/reservations/admin/ReservationEditAdmin.vue');
+const ReservationListCustomer = () => import('../components/reservations/customer/ReservationListCustomer');
+const ReservationCreateFormCustomer = () => import("../components/reservations/customer/ReservationCreateFormCustomer.vue");
+const ReservationEditFormCustomer = () => import('../components/reservations/customer/ReservationEditFormCustomer.vue')
 export const routes = [
     {
         name: 'home',
@@ -87,4 +89,21 @@ export const routes = [
         component: ReservationEditAdmin,
         props: true
     },
+    {
+        name: 'customer-reservations',
+        path: '/reservations',
+        component: ReservationListCustomer,
+    },
+    {
+        name: 'customer-reservation-create',
+        path: '/reservations/:id/create',
+        component: ReservationCreateFormCustomer,
+        props: true
+    },
+    {
+        name: 'customer-reservation-edit',
+        path: '/reservations/:id/edit',
+        component: ReservationEditFormCustomer,
+        props: true
+    }
 ];

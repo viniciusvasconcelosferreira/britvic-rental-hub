@@ -20454,7 +20454,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Reservation ")];
     }),
     _: 1 /* STABLE */
-  })], 64 /* STABLE_FRAGMENT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [!$props.authenticated ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+  })], 64 /* STABLE_FRAGMENT */)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.authenticated && $props.userType === 'client' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
+    key: 1,
+    "exact-active-class": "active",
+    to: "/reservations",
+    "class": "nav-item nav-link"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" My Reservations ")];
+    }),
+    _: 1 /* STABLE */
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [!$props.authenticated ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 0
   }, [$options.loginLink ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_link, {
     key: 0,
@@ -20565,6 +20575,15 @@ var ReservationCreateAdmin = function ReservationCreateAdmin() {
 var ReservationEditAdmin = function ReservationEditAdmin() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_reservations_admin_ReservationEditAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/reservations/admin/ReservationEditAdmin.vue */ "./resources/js/components/reservations/admin/ReservationEditAdmin.vue"));
 };
+var ReservationListCustomer = function ReservationListCustomer() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_reservations_customer_ReservationListCustomer_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/reservations/customer/ReservationListCustomer */ "./resources/js/components/reservations/customer/ReservationListCustomer.vue"));
+};
+var ReservationCreateFormCustomer = function ReservationCreateFormCustomer() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_reservations_customer_ReservationCreateFormCustomer_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/reservations/customer/ReservationCreateFormCustomer.vue */ "./resources/js/components/reservations/customer/ReservationCreateFormCustomer.vue"));
+};
+var ReservationEditFormCustomer = function ReservationEditFormCustomer() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_reservations_customer_ReservationEditFormCustomer_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/reservations/customer/ReservationEditFormCustomer.vue */ "./resources/js/components/reservations/customer/ReservationEditFormCustomer.vue"));
+};
 var routes = [{
   name: 'home',
   path: '/',
@@ -20623,6 +20642,20 @@ var routes = [{
   name: 'admin-edit-reservation',
   path: '/admin/reservations/:id/edit',
   component: ReservationEditAdmin,
+  props: true
+}, {
+  name: 'customer-reservations',
+  path: '/reservations',
+  component: ReservationListCustomer
+}, {
+  name: 'customer-reservation-create',
+  path: '/reservations/:id/create',
+  component: ReservationCreateFormCustomer,
+  props: true
+}, {
+  name: 'customer-reservation-edit',
+  path: '/reservations/:id/edit',
+  component: ReservationEditFormCustomer,
   props: true
 }];
 
@@ -35834,12 +35867,15 @@ function useRoute() {
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
 /******/ 			id: moduleId,
-/******/ 			// no module.loaded needed
+/******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -35923,7 +35959,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_vehicles_customer_VehicleListCustomer_vue":1,"resources_js_components_authentication_customer_Login_vue":1,"resources_js_components_authentication_customer_Register_vue":1,"resources_js_components_authentication_admin_Login_vue":1,"resources_js_components_authentication_admin_Register_vue":1,"resources_js_components_vehicles_admin_VehicleListAdmin_vue":1,"resources_js_components_vehicles_admin_VehicleCreateAdmin_vue":1,"resources_js_components_vehicles_admin_VehicleEditAdmin_vue":1,"resources_js_components_users_admin_UserListAdmin_vue":1,"resources_js_components_users_admin_UserCreateAdmin_vue":1,"resources_js_components_users_admin_UserEditAdmin_vue":1,"resources_js_components_reservations_admin_ReservationListAdmin_vue":1,"resources_js_components_reservations_admin_ReservationCreateAdmin_vue":1,"resources_js_components_reservations_admin_ReservationEditAdmin_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_vehicles_customer_VehicleListCustomer_vue":1,"resources_js_components_authentication_customer_Login_vue":1,"resources_js_components_authentication_customer_Register_vue":1,"resources_js_components_authentication_admin_Login_vue":1,"resources_js_components_authentication_admin_Register_vue":1,"resources_js_components_vehicles_admin_VehicleListAdmin_vue":1,"resources_js_components_vehicles_admin_VehicleCreateAdmin_vue":1,"resources_js_components_vehicles_admin_VehicleEditAdmin_vue":1,"resources_js_components_users_admin_UserListAdmin_vue":1,"resources_js_components_users_admin_UserCreateAdmin_vue":1,"resources_js_components_users_admin_UserEditAdmin_vue":1,"resources_js_components_reservations_admin_ReservationListAdmin_vue":1,"resources_js_components_reservations_admin_ReservationCreateAdmin_vue":1,"resources_js_components_reservations_admin_ReservationEditAdmin_vue":1,"resources_js_components_reservations_customer_ReservationListCustomer_vue":1,"resources_js_components_reservations_customer_ReservationCreateFormCustomer_vue":1,"resources_js_components_reservations_customer_ReservationEditFormCustomer_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
@@ -36009,6 +36045,15 @@ function useRoute() {
 /******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/node module decorator */
+/******/ 	(() => {
+/******/ 		__webpack_require__.nmd = (module) => {
+/******/ 			module.paths = [];
+/******/ 			if (!module.children) module.children = [];
+/******/ 			return module;
 /******/ 		};
 /******/ 	})();
 /******/ 	
